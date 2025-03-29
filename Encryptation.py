@@ -6,7 +6,7 @@ morse = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
          'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..', '1': '.----',
          '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.',
          '0': '-----', ' ': '/'}
-morse_inv = {a: b for a, b in morse.items()}
+morse_inv = {a: b for a, b in morse.items()} #https://www.youtube.com/watch?v=F19tasIOYoE&t=663s
 
 polar = {'P': 'C', 'C': 'P', 'O': 'E', 'E': 'O', 'L': 'N', 'N': 'L', 'A': 'I', 'I': 'A', 'R': 'T', 'T': 'R', 'H': 'W',
          'W': 'H', 'D': 'U', 'U': 'D', 'G': 'Y', 'Y': 'G', 'B': 'V', 'V': 'B', 'F': 'J', 'J': 'F', 'K': 'Q', 'Q': 'K',
@@ -15,7 +15,7 @@ polar_inv = {a: b for b, a in polar.items()}
 
 
 def translate(text, dictionary):
-    return ''.join(dictionary.get(c.upper(), c) for c in text)
+    return ''.join(dictionary.get(c.upper(), c) for c in text) #video de como aprender a programar pero no lo encuentro cuando lo encuentre se lo envio
 
 
 def translate_morse(text, dictionary):
@@ -28,6 +28,7 @@ def main(page: ft.Page):
     input_text = ft.TextField(label="Escribe aqui")
     output_text = ft.TextField(label="Resultado", read_only=True)
 
+
     def encrypt(e):
         output_text.value = translate(input_text.value, morse) if method.value == "Morse" else translate(
             input_text.value, polar)
@@ -39,9 +40,11 @@ def main(page: ft.Page):
         input_text.value, output_text.value = decoded, decoded
         page.update()
 
+
+
     def copy_to_clipboard(e):
         pyperclip.copy(output_text.value)
-        page.snack_bar = ft.SnackBar(ft.Text("Texto copiado"))
+        page.snack_bar = ft.SnackBar(ft.Text("Texto copiado")) #todo esto fue revisando los comandos de pyperclip
         page.snack_bar.open = True
         page.update()
 
